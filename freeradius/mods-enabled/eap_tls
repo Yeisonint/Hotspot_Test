@@ -1,0 +1,17 @@
+eap {
+    default_eap_type = tls
+
+    tls {
+        private_key_file = /etc/freeradius/certs/server.key
+        certificate_file = /etc/freeradius/certs/server.pem
+        ca_file = /etc/freeradius/certs/ca.pem
+        dh_file = /etc/freeradius/certs/dh.pem
+        random_file = /dev/urandom
+        fragment_size = 1024
+        include_length = yes
+        check_crl = no
+        cipher_list = "HIGH"
+        tls_min_version = "1.2"
+        tls_max_version = "1.3"
+    }
+}

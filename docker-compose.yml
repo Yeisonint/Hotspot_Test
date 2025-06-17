@@ -1,0 +1,41 @@
+services:
+  freeradius:
+    user: root
+    build: ./freeradius
+    ports:
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+    volumes:
+      - ./freeradius/certs:/etc/freeradius/certs
+      - ./freeradius/mods-config/files/authorize:/etc/freeradius/mods-config/files/authorize
+    environment:
+      - HOSTAPD_IP=${RADIUS_IP}
+      - RADIUS_SECRET=${RADIUS_SECRET}
+      - WIFI_MODE=${WIFI_MODE}
+
+  hostapd:
+    build: ./hostapd
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - HOTSPOT_SSID=${HOTSPOT_SSID}
+      - HOTSPOT_PASSWORD=${HOTSPOT_PASSWORD}
+      - HOTSPOT_HW_MODE=${HOTSPOT_HW_MODE}
+      - HOTSPOT_CHANNEL=${HOTSPOT_CHANNEL}
+      - RADIUS_IP=${RADIUS_IP}
+      - RADIUS_SECRET=${RADIUS_SECRET}
+      - WIFI_INTERFACE=${WIFI_INTERFACE}
+      - WIFI_MODE=${WIFI_MODE}
+    volumes:
+      - ./hostapd/hostapd.conf.template:/etc/hostapd/hostapd.conf.template
+      - ./hostapd/hostapd.conf.template_WPAENT:/etc/hostapd/hostapd.conf.template_WPAENT
+  dhcp:
+    image: networkboot/dhcpd
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./dhcp:/data
+    environment:
+      INTERFACES: ${WIFI_INTERFACE}

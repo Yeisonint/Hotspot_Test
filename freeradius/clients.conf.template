@@ -1,0 +1,4 @@
+client hostapd {
+    ipaddr = ${HOSTAPD_IP}
+    secret = ${RADIUS_SECRET}
+}
