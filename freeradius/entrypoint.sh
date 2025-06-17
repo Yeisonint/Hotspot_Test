@@ -33,9 +33,9 @@ else
 fi
 
 if [ "$WIFI_MODE" = "ENTERPRISE" ]; then
-  mv /eap /etc/freeradius/mods-enabled/eap
+  cp /etc/freeradius/eap /etc/freeradius/mods-enabled/eap
 elif [ "$WIFI_MODE" = "ENTERPRISE_TLS" ]; then
-  mv /eap_tls /etc/freeradius/mods-enabled/eap
+  cp /etc/freeradius/eap_tls /etc/freeradius/mods-enabled/eap
 fi
 
 exec "$@"

@@ -8,6 +8,8 @@ services:
     volumes:
       - ./freeradius/certs:/etc/freeradius/certs
       - ./freeradius/mods-config/files/authorize:/etc/freeradius/mods-config/files/authorize
+      - ./freeradius/mods-enabled/eap:/etc/freeradius/eap
+      - ./freeradius/mods-enabled/eap_tls:/etc/freeradius/eap_tls
     environment:
       - HOSTAPD_IP=${RADIUS_IP}
       - RADIUS_SECRET=${RADIUS_SECRET}
@@ -21,8 +23,6 @@ services:
     environment:
       - HOTSPOT_SSID=${HOTSPOT_SSID}
       - HOTSPOT_PASSWORD=${HOTSPOT_PASSWORD}
-      - HOTSPOT_HW_MODE=${HOTSPOT_HW_MODE}
-      - HOTSPOT_CHANNEL=${HOTSPOT_CHANNEL}
       - RADIUS_IP=${RADIUS_IP}
       - RADIUS_SECRET=${RADIUS_SECRET}
       - WIFI_INTERFACE=${WIFI_INTERFACE}

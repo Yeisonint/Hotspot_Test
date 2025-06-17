@@ -1,8 +1,10 @@
 interface=${WIFI_INTERFACE}
 driver=nl80211
 ssid=${HOTSPOT_SSID}
-hw_mode=${HOTSPOT_HW_MODE}
-channel=${HOTSPOT_CHANNEL}
+# hw_mode=a
+# channel=161
+hw_mode=g
+channel=6
 
 # WPA2-Personal
 wpa=2
@@ -11,7 +13,6 @@ wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
 
 ieee80211n=1
-ieee80211ac=1
-ieee80211ax=1
+ieee80211ac=0
 ieee80211d=1
 country_code=US

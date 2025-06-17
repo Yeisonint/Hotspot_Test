@@ -23,7 +23,29 @@ Change the value of `HOTSPOT_SSID` in the `.env` file.
 
 ### Channel and Band
 
-Change the value of `HOTSPOT_HW_MODE` and `HOTSPOT_CHANNEL` in the `.env` file. Make sure the band and channel are compatible.
+Change band, channel, protocol and country in hostapd templates inside `hostapd` folder
+
+```bash
+# For example 5Ghz, Channel 161
+hw_mode=a
+channel=161
+ieee80211n=0
+ieee80211ac=1
+ieee80211d=1
+ieee8021x=1
+country_code=US
+```
+
+```bash
+# For example 2.4Ghz, Channel 6
+hw_mode=g
+channel=6
+ieee80211n=1
+ieee80211ac=0
+ieee80211d=1
+ieee8021x=0
+country_code=US
+```
 
 ### DHCP
 
